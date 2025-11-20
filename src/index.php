@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -216,13 +224,11 @@
                                 </svg>
                             </button>
 
-                            <div
-                                class="absolute hidden group-hover:block w-48 bg-white shadow-lg rounded-md mt-1 font-normal">
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Electronics</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Fashion</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Home & Garden</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sports</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Books</a>
+                            <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 w-48 bg-white shadow-lg rounded-md mt-0 font-normal z-50 transition-all duration-200">
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Trusted Brands</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Cheap But Effective</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Gift Products</a>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Old Products</a>
                             </div>
                         </div>
 
@@ -316,30 +322,28 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Category 1 -->
                 <div class="relative overflow-hidden rounded-lg group">
-                    <img src="Image/category1.jpg" alt="Category 1" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-white text-2xl font-bold">Smartphones</h3>
-                    </div>
+                    <img src="Image/Lapto.png" alt="Category 1" class="w-full h-100 object-cover transition duration-300 group-hover:scale-110">
                 </div>
 
                 <!-- Category 2 -->
                 <div class="relative overflow-hidden rounded-lg group">
-                    <img src="Image/category2.jpg" alt="Category 2" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-white text-2xl font-bold">Laptops</h3>
-                    </div>
+                    <img src="Image/gamingpc.png" alt="Category 2" class="w-full h-100 object-cover transition duration-300 group-hover:scale-110">
                 </div>
 
                 <!-- Category 3 -->
                 <div class="relative overflow-hidden rounded-lg group">
-                    <img src="Image/category3.jpg" alt="Category 3" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-white text-2xl font-bold">Accessories</h3>
-                    </div>
+                    <img src="Image/mubail.png" alt="Category 3" class="w-full h-100 object-cover transition duration-300 group-hover:scale-110">
+
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Shop By Category Section  -->
+    <div class="sbc">
+
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="script.js"></script>
