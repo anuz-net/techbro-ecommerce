@@ -26,7 +26,7 @@
                         <a href="#" class="hover:text-red-200">Frequently Asked Questions</a>
                         <a href="#" class="hover:text-red-200">Privacy Policy</a>
                     </div>
-                    
+
                     <!-- Right Side Services -->
                     <div class="flex space-x-6 items-center">
                         <div class="flex items-center space-x-1">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="max-w-7xl mx-auto px-4">
             <div class="top-main font-bold ">
                 <!-- navbar  -->
@@ -290,6 +290,53 @@
                     </svg>
                     Laptops
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-sec">
+
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-lg p-8 md:p-12 text-white mb-8">
+                <div class="max-w-2xl">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Latest Tech Deals</h1>
+                    <p class="text-lg md:text-xl mb-6 opacity-90">Discover amazing discounts on smartphones, laptops, and accessories</p>
+                    <button class="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Categories -->
+        <!-- Featured Categories Grid -->
+        <div class="max-w-7xl mx-auto px-4 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Category 1 -->
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="Image/category1.jpg" alt="Category 1" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Smartphones</h3>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="Image/category2.jpg" alt="Category 2" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Laptops</h3>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="relative overflow-hidden rounded-lg group">
+                    <img src="Image/category3.jpg" alt="Category 3" class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h3 class="text-white text-2xl font-bold">Accessories</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
