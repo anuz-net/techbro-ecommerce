@@ -139,12 +139,12 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                 <div class="bg-white p-6 rounded-lg shadow-sm border">
                     <h3 class="text-lg font-semibold mb-4">Product Management</h3>
                     <div class="space-y-3">
-                        <button class="block w-full text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg">
-                            View Products
-                        </button>
-                        <button class="block w-full text-left px-4 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg">
+                        <a href="manage_products.php" class="block w-full text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg">
+                            Manage Featured Products
+                        </a>
+                        <a href="add_product.php" class="block w-full text-left px-4 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg">
                             Add New Product
-                        </button>
+                        </a>
                     </div>
                 </div>
 

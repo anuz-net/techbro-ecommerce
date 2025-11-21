@@ -120,7 +120,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="flex-initial">
                         <div class="flex justify-end items-center relative">
                             <div class="flex mr-4 items-center">
-                                <a class=" py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
+                                <a class=" py-2 px-3 hover:bg-gray-200 rounded-full" href="cart.php">
                                     <div class="flex items-center relative cursor-pointer whitespace-nowrap">
                                         <span class=" flex items-center justify-center gap-2 font-medium relative">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -129,7 +129,7 @@ if (!isset($_SESSION['user_id'])) {
                                                     d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                             </svg>
                                             <span
-                                                class="absolute -top-0.5 -left-[3px]  bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
+                                                class="cart-count absolute -top-0.5 -left-[3px]  bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
                                             My Cart</span>
                                     </div>
                                 </a>
@@ -339,14 +339,215 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-    <!-- Shop By Category Section  -->
-    <div class="sbc">
+    <!-- Shop By Category Section -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-8">Shop By Category</h2>
 
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <!-- Smartphones -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-blue-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-blue-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Smartphones</span>
+            </div>
+
+            <!-- Laptops -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-green-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-green-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Laptops</span>
+            </div>
+
+            <!-- Gaming PCs -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-purple-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-purple-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Gaming PCs</span>
+            </div>
+
+            <!-- Headphones -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-red-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Audio</span>
+            </div>
+
+            <!-- Cameras -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-orange-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Cameras</span>
+            </div>
+
+            <!-- Smart Home -->
+            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="p-3 bg-indigo-100 rounded-full mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                </div>
+                <span class="text-sm font-medium text-gray-800">Smart Home</span>
+            </div>
+        </div>
     </div>
 
+    <!-- Featured Products Section -->
+    <div class="">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8">Featured Products</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="script.js"></script>
+            <div class="products-slider-container">
+                <div class="products-slider-content">
+                    <?php
+                    require_once 'config.php';
+                    $stmt = $pdo->prepare("SELECT * FROM products WHERE is_featured = 1 ORDER BY created_at DESC LIMIT 8");
+                    $stmt->execute();
+                    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($products as $product):
+                    ?>
+                        <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                            <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
+                            </div>
+
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                                        <svg class="w-4 h-4 <?php echo $i <= $product['rating'] ? 'fill-current' : 'text-gray-300'; ?>" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    <?php endfor; ?>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-600">(<?php echo $product['rating']; ?>)</span>
+                            </div>
+
+                            <button onclick="addToCart(<?php echo $product['id']; ?>)" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <!-- Duplicate set for seamless loop -->
+                    <?php for ($j = 0; $j < 1; $j++): ?>
+                        <?php foreach ($products as $product): ?>
+                            <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                                <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400">
+                                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <svg class="w-4 h-4 <?php echo $i <= $product['rating'] ? 'fill-current' : 'text-gray-300'; ?>" viewBox="0 0 20 20">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        <?php endfor; ?>
+                                    </div>
+                                    <span class="ml-2 text-sm text-gray-600">(<?php echo $product['rating']; ?>)</span>
+                                </div>
+
+                                <button onclick="addToCart(<?php echo $product['id']; ?>)" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .products-slider-container {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .products-slider-content {
+                display: flex;
+                animation: carousel-scroll 40s linear infinite;
+                width: max-content;
+                gap: 1.5rem;
+            }
+
+            .product-card {
+                min-width: 280px;
+                flex-shrink: 0;
+            }
+
+            @keyframes carousel-scroll {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .products-slider-content:hover {
+                animation-play-state: paused;
+            }
+        </style>
+
+        <script>
+            function addToCart(productId) {
+                fetch('add_to_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'product_id=' + productId
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Product added to cart!');
+                            updateCartCount();
+                        } else {
+                            alert('Error adding to cart');
+                        }
+                    });
+            }
+
+            function updateCartCount() {
+                fetch('get_cart_count.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('.cart-count').textContent = data.count;
+                    });
+            }
+
+            // Update cart count on page load
+            updateCartCount();
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
