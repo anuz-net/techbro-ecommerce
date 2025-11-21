@@ -87,6 +87,3 @@
 
 ---
 
-# 🎥 **Live Demo (GIF Preview)**  
-*(Add your GIF demo file in the folder and update the path)*
-
