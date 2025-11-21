@@ -22,8 +22,6 @@
 
 # 🧩 **TechBro Built With**
 
-### 🌗 Auto Dark/Light Compatible Icons
-
 <p align="left">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=html&theme=dark">
