@@ -1,4 +1,4 @@
-cat << 'EOF' > README.md
+
 # 🌐 **TechBro – Your Ultimate Tech Shopping Destination**  
 ### _Next-gen ecommerce for next-gen tech lovers._
 
