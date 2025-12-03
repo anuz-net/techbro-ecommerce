@@ -36,13 +36,13 @@
             Please enter your email and password to login to your account.
         </p>
 
-        <?php if(isset($_GET['error'])): ?>
+        <?php if (isset($_GET['error'])): ?>
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
                 <?php echo htmlspecialchars($_GET['error']); ?>
             </div>
         <?php endif; ?>
-        
-        <?php if(isset($_GET['success'])): ?>
+
+        <?php if (isset($_GET['success'])): ?>
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mt-4">
                 <?php echo htmlspecialchars($_GET['success']); ?>
             </div>
@@ -56,11 +56,11 @@
                 <input placeholder="Password" type="password" name="password" required
                     class="p-2 px-3 mt-3 border-b-[2px] focus:border-red-400 w-full outline-none bg-white transition duration-300" />
             </div>
-            
+
             <div class="text-center sm:text-right mt-5">
                 <p>
                     Don't have an account?
-                    <a href="signup.html" class="font-semibold text-red-600 hover:underline">Sign Up</a>
+                    <a href="signup.php" class="font-semibold text-red-600 hover:underline">Sign Up</a>
                 </p>
             </div>
 

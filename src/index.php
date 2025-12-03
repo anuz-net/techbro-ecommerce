@@ -480,6 +480,11 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
+        <!-- Iamge Banner  -->
+        <div class="max-w-7xl mx-auto my-10 ">
+            <img src="Image/banner1.png" class="rounded-lg border" alt="">
+        </div>
+
 
         <style>
             .products-slider-container {
