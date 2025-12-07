@@ -407,8 +407,84 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
+    <!-- Hot Deals Section -->
+    <div class="bg-gradient-to-r from-orange-50 to-red-50 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-orange-600">🔥 Hot Deals</h2>
+
+            <div class="products-slider-container">
+                <div class="products-slider-content">
+                    <?php
+                    $stmt = $pdo->prepare("SELECT * FROM products WHERE is_hot_deal = 1 ORDER BY created_at DESC LIMIT 8");
+                    $stmt->execute();
+                    $hot_deals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($hot_deals as $product):
+                    ?>
+                        <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 border-2 border-orange-200">
+                            <div class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">HOT</div>
+                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                            <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl font-bold text-orange-600">$<?php echo number_format($product['price'], 2); ?></span>
+                            </div>
+
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                                        <svg class="w-4 h-4 <?php echo $i <= $product['rating'] ? 'fill-current' : 'text-gray-300'; ?>" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                        </svg>
+                                    <?php endfor; ?>
+                                </div>
+                                <span class="ml-2 text-sm text-gray-600">(<?php echo $product['rating']; ?>)</span>
+                            </div>
+
+                            <button onclick="addToCart(<?php echo $product['id']; ?>)" class="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition duration-300">
+                                Add to Cart
+                            </button>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <!-- Duplicate set for seamless loop -->
+                    <?php for ($j = 0; $j < 1; $j++): ?>
+                        <?php foreach ($hot_deals as $product): ?>
+                            <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 border-2 border-orange-200">
+                                <div class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">HOT</div>
+                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+
+                                <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl font-bold text-orange-600">$<?php echo number_format($product['price'], 2); ?></span>
+                                </div>
+
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400">
+                                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <svg class="w-4 h-4 <?php echo $i <= $product['rating'] ? 'fill-current' : 'text-gray-300'; ?>" viewBox="0 0 20 20">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        <?php endfor; ?>
+                                    </div>
+                                    <span class="ml-2 text-sm text-gray-600">(<?php echo $product['rating']; ?>)</span>
+                                </div>
+
+                                <button onclick="addToCart(<?php echo $product['id']; ?>)" class="w-full bg-orange-600 text-white py-2 px-4 rounded-lg hover:bg-orange-700 transition duration-300">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Featured Products Section -->
-    <div class="">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-3xl font-bold mb-8">Featured Products</h2>
 
@@ -424,7 +500,6 @@ if (!isset($_SESSION['user_id'])) {
                     ?>
                         <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
                             <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
-
                             <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
 
                             <div class="flex items-center mb-2">
@@ -487,6 +562,8 @@ if (!isset($_SESSION['user_id'])) {
 
 
 
+
+
         <style>
             .products-slider-container {
                 width: 100%;
@@ -503,6 +580,7 @@ if (!isset($_SESSION['user_id'])) {
             .product-card {
                 min-width: 280px;
                 flex-shrink: 0;
+                position: relative;
             }
 
             @keyframes carousel-scroll {

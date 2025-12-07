@@ -142,6 +142,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                         <a href="manage_products.php" class="block w-full text-left px-4 py-2 bg-purple-50 hover:bg-purple-100 rounded-lg">
                             Manage Featured Products
                         </a>
+                        <a href="manage_hot_deals.php" class="block w-full text-left px-4 py-2 bg-orange-50 hover:bg-orange-100 rounded-lg">
+                            Manage Hot Deals
+                        </a>
                         <a href="add_product.php" class="block w-full text-left px-4 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg">
                             Add New Product
                         </a>
