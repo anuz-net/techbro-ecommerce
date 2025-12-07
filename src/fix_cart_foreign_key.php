@@ -10,11 +10,11 @@ try {
     
     $pdo->exec("USE techbro_db");
     
-    // Add is_hot_deal column to products table
-    $sql = "ALTER TABLE products ADD COLUMN IF NOT EXISTS is_hot_deal BOOLEAN DEFAULT FALSE";
-    $pdo->exec($sql);
+    // Drop foreign keys
+    $pdo->exec("ALTER TABLE cart DROP FOREIGN KEY cart_ibfk_1");
+    $pdo->exec("ALTER TABLE cart DROP FOREIGN KEY cart_ibfk_2");
     
-    echo "Hot Deals column added successfully! You can now manage hot deals from the admin panel.";
+    echo "Foreign keys removed! Cart should work now.";
     
 } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();

@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
+require_once 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -406,6 +407,10 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
     </div>
+    <!-- Iamge Banner  -->
+    <div class="max-w-7xl mx-auto my-10 ">
+        <img src="Image/banner1.png" class="rounded-lg border" alt="">
+    </div>
 
     <!-- Hot Deals Section -->
     <div class="bg-gradient-to-r from-orange-50 to-red-50 py-12">
@@ -491,7 +496,6 @@ if (!isset($_SESSION['user_id'])) {
             <div class="products-slider-container">
                 <div class="products-slider-content">
                     <?php
-                    require_once 'config.php';
                     $stmt = $pdo->prepare("SELECT * FROM products WHERE is_featured = 1 ORDER BY created_at DESC LIMIT 8");
                     $stmt->execute();
                     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -555,10 +559,7 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
             </div>
         </div>
-        <!-- Iamge Banner  -->
-        <div class="max-w-7xl mx-auto my-10 ">
-            <img src="Image/banner1.png" class="rounded-lg border" alt="">
-        </div>
+
 
 
 
@@ -598,7 +599,20 @@ if (!isset($_SESSION['user_id'])) {
             }
         </style>
 
+        <!-- Notification Toast -->
+        <div id="notification" style="position: fixed; top: 20px; right: 20px; background: #10b981; color: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateX(400px); transition: transform 0.3s; z-index: 9999;">
+            ✓ Added to cart successfully!
+        </div>
+
         <script>
+            function showNotification() {
+                const notification = document.getElementById('notification');
+                notification.style.transform = 'translateX(0)';
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                }, 3000);
+            }
+
             function addToCart(productId) {
                 fetch('add_to_cart.php', {
                         method: 'POST',
@@ -609,12 +623,17 @@ if (!isset($_SESSION['user_id'])) {
                     })
                     .then(response => response.json())
                     .then(data => {
+                        console.log('Response:', data);
                         if (data.success) {
-                            alert('Product added to cart!');
+                            showNotification();
                             updateCartCount();
                         } else {
-                            alert('Error adding to cart');
+                            alert('Failed: ' + (data.error || 'Unknown error'));
                         }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error adding to cart');
                     });
             }
 

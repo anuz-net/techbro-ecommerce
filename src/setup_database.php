@@ -1,6 +1,6 @@
 <?php
-$host = 'localhost';
-$port = '3306';
+$host = '127.0.0.1';
+$port = '3307';
 $username = 'root';
 $password = '';
 
@@ -9,17 +9,9 @@ try {
     $pdo = new PDO("mysql:host=$host;port=$port", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $pdo->exec("CREATE DATABASE IF NOT EXISTS techbro_db");
+    $pdo->exec("DROP DATABASE IF EXISTS techbro_db");
+    $pdo->exec("CREATE DATABASE techbro_db");
     $pdo->exec("USE techbro_db");
-    
-    // Disable foreign key checks
-    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
-    
-    // Drop existing table if exists
-    $pdo->exec("DROP TABLE IF EXISTS users");
-    
-    // Re-enable foreign key checks
-    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
     
     // Create users table
     $sql = "CREATE TABLE users (

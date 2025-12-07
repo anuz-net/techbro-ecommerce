@@ -5,7 +5,7 @@ require_once 'config.php';
 header('Content-Type: application/json');
 
 if (!isset($_SESSION['user_id']) || !isset($_POST['product_id'])) {
-    echo json_encode(['success' => false]);
+    echo json_encode(['success' => false, 'error' => 'Missing user or product']);
     exit();
 }
 
@@ -30,6 +30,6 @@ try {
     
     echo json_encode(['success' => true]);
 } catch(PDOException $e) {
-    echo json_encode(['success' => false]);
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?>
