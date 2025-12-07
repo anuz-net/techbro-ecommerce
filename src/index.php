@@ -486,6 +486,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
 
+
         <style>
             .products-slider-container {
                 width: 100%;
