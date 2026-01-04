@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit();
-}
 require_once 'config.php';
 ?>
 
@@ -84,36 +80,15 @@ require_once 'config.php';
                     <!-- end logo -->
 
                     <!-- search bar -->
-                    <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
-                        <div class="inline-block">
-                            <div class="inline-flex items-center max-w-full">
-                                <button
-                                    class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-60 border rounded-full px-1 py-1"
-                                    type="button">
-                                    <div class="block flex-grow flex-shrink overflow-hidden font-light text-gray-500 ">
-                                        Search Here
-                                    </div>
-                                    <div class="flex items-center justify-center relative h-8 w-8 rounded-full">
-                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-                                            role="presentation" focusable="false" style="
-                      display: block;
-                      fill: none;
-                      height: 12px;
-                      width: 12px;
-                      stroke: currentcolor;
-                      stroke-width: 5.33333;
-                      overflow: visible;
-                    ">
-                                            <g fill="none">
-                                                <path
-                                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="hidden sm:block flex-1 max-w-xl mx-8">
+                        <form action="search.php" method="GET" class="flex items-center gap-3">
+                            <input type="text" name="q" placeholder="Search for products..." required class="flex-1 px-6 py-2.5 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                            <button type="submit" class="flex items-center justify-center w-11 h-11 bg-red-600 hover:bg-red-700 rounded-full transition">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="3">
+                                    <path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                     <!-- end search bar -->
 
@@ -121,7 +96,7 @@ require_once 'config.php';
                     <div class="flex-initial">
                         <div class="flex justify-end items-center relative">
                             <div class="flex mr-4 items-center">
-                                <a class=" py-2 px-3 hover:bg-gray-200 rounded-full" href="cart.php">
+                                <button onclick="openCartModal()" class="py-2 px-3 hover:bg-gray-200 rounded-full">
                                     <div class="flex items-center relative cursor-pointer whitespace-nowrap">
                                         <span class=" flex items-center justify-center gap-2 font-medium relative">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -133,7 +108,7 @@ require_once 'config.php';
                                                 class="cart-count absolute -top-0.5 -left-[3px]  bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">0</span>
                                             My Cart</span>
                                     </div>
-                                </a>
+                                </button>
                             </div>
 
                             <!-- Mobile Hamburger -->
@@ -160,7 +135,7 @@ require_once 'config.php';
                                 <!-- Profile Dropdown Menu -->
                                 <div
                                     class="dropdown-menu absolute right-0 w-48 bg-white shadow-lg rounded-md mt-1 font-normal z-50">
-                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 border-b">
+                                    <a href="profile.php" class="flex items-center px-4 py-2 hover:bg-gray-100 border-b">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-3">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -183,16 +158,6 @@ require_once 'config.php';
                                                 d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                                         </svg>
                                         Wishlist
-                                    </a>
-                                    <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100 border-b">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-3">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a6.759 6.759 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                        </svg>
-                                        Settings
                                     </a>
                                     <a href="logout.php" class="flex items-center px-4 py-2 hover:bg-gray-100 text-red-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -226,20 +191,19 @@ require_once 'config.php';
                             </button>
 
                             <div class="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 w-48 bg-white shadow-lg rounded-md mt-0 font-normal z-50 transition-all duration-200">
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Trusted Brands</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Cheap But Effective</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Gift Products</a>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Old Products</a>
+                                <a href="category.php?filter=trusted-brands" class="block px-4 py-2 hover:bg-gray-100">Trusted Brands</a>
+                                <a href="category.php?filter=cheap-effective" class="block px-4 py-2 hover:bg-gray-100">Cheap But Effective</a>
+                                <a href="category.php?filter=gift-products" class="block px-4 py-2 hover:bg-gray-100">Gift Products</a>
+                                <a href="category.php?filter=old-products" class="block px-4 py-2 hover:bg-gray-100">Old Products</a>
                             </div>
                         </div>
 
                         <!-- Regular menu items -->
                         <div class="flex space-x-8 ml-8">
-                            <a href="#" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Mobiles</a>
-                            <a href="#" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Laptops</a>
-                            <a href="#" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Computers</a>
-                            <a href="#"
-                                class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Accessories</a>
+                            <a href="category.php?slug=mobile" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Mobiles</a>
+                            <a href="category.php?slug=laptops" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Laptops</a>
+                            <a href="category.php?slug=computers" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Computers</a>
+                            <a href="category.php?slug=accessories" class="hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-200">Accessories</a>
                         </div>
                     </div>
                 </div>
@@ -265,7 +229,7 @@ require_once 'config.php';
                 </div>
             </div>
             <div class="p-4">
-                <a href="#" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                <a href="profile.php" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -273,7 +237,7 @@ require_once 'config.php';
                     </svg>
                     My Profile
                 </a>
-                <a href="#" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                <a href="cart.php" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -281,7 +245,7 @@ require_once 'config.php';
                     </svg>
                     My Cart
                 </a>
-                <a href="#" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                <a href="category.php?slug=mobile" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -289,13 +253,29 @@ require_once 'config.php';
                     </svg>
                     Mobiles
                 </a>
-                <a href="#" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                <a href="category.php?slug=laptops" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-5 h-5 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
                     </svg>
                     Laptops
+                </a>
+                <a href="category.php?slug=computers" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                    </svg>
+                    Computers
+                </a>
+                <a href="category.php?slug=accessories" class="flex items-center py-3 px-2 hover:bg-gray-100 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 7.5l-2.25-1.313L16.5 7.5m0 2.25L14.25 8.438 12 9.75l-2.25-1.313L7.5 9.75l-2.25-1.313L3 7.5m6 4.125l2.25 1.313L13.5 11.25l2.25 1.313L18 11.25l2.25 1.313L22.5 11.25M12 18.75V21m-6-3v3m12-3v3" />
+                    </svg>
+                    Accessories
                 </a>
             </div>
         </div>
@@ -346,47 +326,47 @@ require_once 'config.php';
 
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             <!-- Smartphones -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <a href="category.php?slug=smartphones" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-blue-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-blue-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Smartphones</span>
-            </div>
+            </a>
 
             <!-- Laptops -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <a href="category.php?slug=laptops" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-green-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-green-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Laptops</span>
-            </div>
+            </a>
 
             <!-- Gaming PCs -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <a href="category.php?slug=gaming-pcs" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-purple-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-purple-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Gaming PCs</span>
-            </div>
+            </a>
 
-            <!-- Headphones -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <!-- Audio -->
+            <a href="category.php?slug=audio" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-red-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Audio</span>
-            </div>
+            </a>
 
             <!-- Cameras -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <a href="category.php?slug=cameras" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-orange-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
@@ -394,17 +374,17 @@ require_once 'config.php';
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Cameras</span>
-            </div>
+            </a>
 
             <!-- Smart Home -->
-            <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+            <a href="category.php?slug=smart-home" class="flex flex-col items-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                 <div class="p-3 bg-indigo-100 rounded-full mb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-600">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
                 </div>
                 <span class="text-sm font-medium text-gray-800">Smart Home</span>
-            </div>
+            </a>
         </div>
     </div>
     <!-- Iamge Banner  -->
@@ -427,10 +407,11 @@ require_once 'config.php';
                     foreach ($hot_deals as $product):
                     ?>
                         <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 border-2 border-orange-200">
-                            <div class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">HOT</div>
-                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
-
-                            <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+                            <a href="product.php?id=<?php echo $product['id']; ?>">
+                                <div class="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">HOT</div>
+                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+                            </a>
 
                             <div class="flex items-center mb-2">
                                 <span class="text-2xl font-bold text-orange-600">$<?php echo number_format($product['price'], 2); ?></span>
@@ -503,8 +484,10 @@ require_once 'config.php';
                     foreach ($products as $product):
                     ?>
                         <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
-                            <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+                            <a href="product.php?id=<?php echo $product['id']; ?>">
+                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
+                            </a>
 
                             <div class="flex items-center mb-2">
                                 <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
@@ -647,7 +630,122 @@ require_once 'config.php';
 
             // Update cart count on page load
             updateCartCount();
+            
+            function toggleMobileMenu() {
+                const menu = document.getElementById('mobileMenu');
+                const sideMenu = document.getElementById('sideMenu');
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    setTimeout(() => sideMenu.classList.remove('translate-x-full'), 10);
+                } else {
+                    sideMenu.classList.add('translate-x-full');
+                    setTimeout(() => menu.classList.add('hidden'), 300);
+                }
+            }
+            
+            function openCartModal() {
+                const modal = document.getElementById('cartModal');
+                const popup = document.getElementById('cartPopup');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    popup.classList.remove('scale-95', 'opacity-0');
+                    popup.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                loadCartItems();
+            }
+
+            function closeCartModal() {
+                const modal = document.getElementById('cartModal');
+                const popup = document.getElementById('cartPopup');
+                popup.classList.remove('scale-100', 'opacity-100');
+                popup.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+
+            function loadCartItems() {
+                fetch('get_cart_items.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const container = document.getElementById('cartItems');
+                        if (data.items.length === 0) {
+                            container.innerHTML = '<div class="text-center py-8 text-gray-500">Your cart is empty</div>';
+                        } else {
+                            container.innerHTML = data.items.map(item => `
+                                <div class="flex gap-4 mb-4 pb-4 border-b last:border-0">
+                                    <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold">${item.name}</h3>
+                                        <p class="text-red-600 font-bold mt-1">$${parseFloat(item.price).toFixed(2)}</p>
+                                        <div class="flex items-center gap-3 mt-2">
+                                            <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})" class="w-8 h-8 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-lg transition">-</button>
+                                            <span class="font-semibold">${item.quantity}</span>
+                                            <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})" class="w-8 h-8 flex items-center justify-center bg-gray-200 hover:bg-gray-300 rounded-lg transition">+</button>
+                                            <button onclick="removeFromCart(${item.id})" class="ml-auto text-red-600 hover:text-red-700 font-medium">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('');
+                        }
+                        document.getElementById('cartTotal').textContent = '$' + parseFloat(data.total).toFixed(2);
+                    });
+            }
+
+            function updateQuantity(cartId, quantity) {
+                if (quantity < 1) return;
+                fetch('update_cart.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `cart_id=${cartId}&quantity=${quantity}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadCartItems();
+                        updateCartCount();
+                    }
+                });
+            }
+
+            function removeFromCart(cartId) {
+                fetch('remove_from_cart.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `cart_id=${cartId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadCartItems();
+                        updateCartCount();
+                    }
+                });
+            }
         </script>
+
+        <!-- Cart Modal -->
+        <div id="cartModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+            <div class="fixed inset-0 bg-black bg-opacity-30" onclick="closeCartModal()"></div>
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform scale-95 opacity-0 transition-all duration-300 relative z-10" id="cartPopup">
+                <div class="flex flex-col max-h-[80vh]">
+                    <div class="flex items-center justify-between p-6 border-b">
+                        <h2 class="text-2xl font-bold">My Cart</h2>
+                        <button onclick="closeCartModal()" class="p-2 hover:bg-gray-100 rounded-full transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="cartItems" class="flex-1 overflow-y-auto p-6"></div>
+                    <div class="border-t p-6">
+                        <div class="flex justify-between mb-4">
+                            <span class="font-semibold text-lg">Total:</span>
+                            <span id="cartTotal" class="font-bold text-2xl text-red-600">$0.00</span>
+                        </div>
+                        <button onclick="window.location.href='cart.php'" class="w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script src="script.js"></script>
@@ -680,10 +778,10 @@ require_once 'config.php';
                     <div>
                         <h3 class="font-semibold mb-4">Categories</h3>
                         <ul class="space-y-2 text-sm">
-                            <li><a href="#" class="text-gray-400 hover:text-white">Smartphones</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Laptops</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Gaming</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+                            <li><a href="category.php?slug=smartphones" class="text-gray-400 hover:text-white">Smartphones</a></li>
+                            <li><a href="category.php?slug=laptops" class="text-gray-400 hover:text-white">Laptops</a></li>
+                            <li><a href="category.php?slug=gaming-pcs" class="text-gray-400 hover:text-white">Gaming</a></li>
+                            <li><a href="category.php?slug=accessories" class="text-gray-400 hover:text-white">Accessories</a></li>
                         </ul>
                     </div>
 
