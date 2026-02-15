@@ -597,7 +597,7 @@ require_once 'config.php';
             }
 
             function addToCart(productId) {
-                fetch('add_to_cart.php', {
+                fetch('api/add_to_cart.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -610,6 +610,8 @@ require_once 'config.php';
                         if (data.success) {
                             showNotification();
                             updateCartCount();
+                        } else if (data.redirect) {
+                            window.location.href = data.redirect;
                         } else {
                             alert('Failed: ' + (data.error || 'Unknown error'));
                         }
@@ -630,7 +632,7 @@ require_once 'config.php';
 
             // Update cart count on page load
             updateCartCount();
-            
+
             function toggleMobileMenu() {
                 const menu = document.getElementById('mobileMenu');
                 const sideMenu = document.getElementById('sideMenu');
@@ -642,7 +644,7 @@ require_once 'config.php';
                     setTimeout(() => menu.classList.add('hidden'), 300);
                 }
             }
-            
+
             function openCartModal() {
                 const modal = document.getElementById('cartModal');
                 const popup = document.getElementById('cartPopup');
@@ -693,32 +695,36 @@ require_once 'config.php';
             function updateQuantity(cartId, quantity) {
                 if (quantity < 1) return;
                 fetch('update_cart.php', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `cart_id=${cartId}&quantity=${quantity}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        loadCartItems();
-                        updateCartCount();
-                    }
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `cart_id=${cartId}&quantity=${quantity}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            loadCartItems();
+                            updateCartCount();
+                        }
+                    });
             }
 
             function removeFromCart(cartId) {
                 fetch('remove_from_cart.php', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `cart_id=${cartId}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        loadCartItems();
-                        updateCartCount();
-                    }
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `cart_id=${cartId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            loadCartItems();
+                            updateCartCount();
+                        }
+                    });
             }
         </script>
 

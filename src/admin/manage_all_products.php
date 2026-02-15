@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit();
 }
 
-require_once 'config.php';
+require_once '../config.php';
 
 // Handle product update
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
@@ -66,7 +66,7 @@ $categories = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll(PD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+    <link href="../output.css" rel="stylesheet">
     <title>Manage All Products</title>
 </head>
 <body class="bg-gray-50 p-6">

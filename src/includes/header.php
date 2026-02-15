@@ -227,7 +227,7 @@ function toggleMobileMenu() {
 }
 
 function updateCartCount() {
-    fetch('get_cart_count.php')
+    fetch('api/get_cart_count.php')
         .then(response => response.json())
         .then(data => {
             const cartCount = document.querySelector('.cart-count');
@@ -258,7 +258,7 @@ function closeCartModal() {
 }
 
 function loadCartItems() {
-    fetch('get_cart_items.php')
+    fetch('api/get_cart_items.php')
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('cartItems');
@@ -287,7 +287,7 @@ function loadCartItems() {
 
 function updateQuantity(cartId, quantity) {
     if (quantity < 1) return;
-    fetch('update_cart.php', {
+    fetch('api/update_cart.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `cart_id=${cartId}&quantity=${quantity}`
@@ -302,7 +302,7 @@ function updateQuantity(cartId, quantity) {
 }
 
 function removeFromCart(cartId) {
-    fetch('remove_from_cart.php', {
+    fetch('api/remove_from_cart.php', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `cart_id=${cartId}`
@@ -336,7 +336,7 @@ function removeFromCart(cartId) {
                     <span class="font-semibold text-lg">Total:</span>
                     <span id="cartTotal" class="font-bold text-2xl text-red-600">$0.00</span>
                 </div>
-                <button onclick="window.location.href='cart.php'" class="w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition">Proceed to Checkout</button>
+                <a href="checkout.php" class="block w-full bg-red-600 text-white py-3 rounded-xl font-semibold hover:bg-red-700 transition text-center">Proceed to Checkout</a>
             </div>
         </div>
     </div>

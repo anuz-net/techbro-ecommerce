@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once 'config.php';
+require_once 'currency.php';
 
 // Handle remove item
 if (isset($_POST['remove_item'])) {
@@ -71,7 +72,7 @@ foreach ($cart_items as $item) {
                         
                         <div class="flex-1 ml-4">
                             <h3 class="font-semibold"><?php echo htmlspecialchars($item['name']); ?></h3>
-                            <p class="text-red-600 font-bold">$<?php echo number_format($item['price'], 2); ?></p>
+                            <p class="text-red-600 font-bold"><?php echo formatPrice($item['price']); ?></p>
                         </div>
                         
                         <div class="flex items-center space-x-4">
@@ -88,17 +89,17 @@ foreach ($cart_items as $item) {
                         </div>
                         
                         <div class="ml-4 font-bold">
-                            $<?php echo number_format($item['price'] * $item['quantity'], 2); ?>
+                            <?php echo formatPrice($item['price'] * $item['quantity']); ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
                 
                 <div class="p-6 bg-gray-50">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-xl font-bold">Total: $<?php echo number_format($total, 2); ?></span>
-                        <button class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 font-semibold">
+                        <span class="text-xl font-bold">Total: <?php echo formatPrice($total); ?></span>
+                        <a href="checkout.php" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 font-semibold">
                             Checkout
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

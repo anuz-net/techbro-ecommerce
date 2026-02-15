@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../config.php';
 
 $product_id = $_GET['id'] ?? 0;
 

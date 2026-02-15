@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="Image/favico.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../Image/favico.png" type="image/x-icon" />
 </head>
 
 <body class="font-sans bg-gray-50" style="font-family: 'Inter', sans-serif;">
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="max-w-md w-full space-y-8">
             <div>
                 <div class="mx-auto h-12 w-auto flex justify-center">
-                    <img src="Image/logo.png" alt="Logo" class="h-12">
+                    <img src="../Image/logo.png" alt="Logo" class="h-12">
                 </div>
                 <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
                     Admin Login
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="text-center">
-                    <a href="index.php" class="text-red-600 hover:text-red-500">
+                    <a href="../index.php" class="text-red-600 hover:text-red-500">
                         Back to main site
                     </a>
                 </div>

@@ -187,7 +187,7 @@ if (!isset($products)) {
         }
 
         function addToCart(productId) {
-            fetch('add_to_cart.php', {
+            fetch('api/add_to_cart.php', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: 'product_id=' + productId

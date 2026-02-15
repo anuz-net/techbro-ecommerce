@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit();
 }
 
-require_once 'config.php';
+require_once '../config.php';
 
 // Handle toggle hot deal status
 if (isset($_POST['toggle_hot_deal'])) {
@@ -31,7 +31,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./output.css" rel="stylesheet">
+    <link href="../output.css" rel="stylesheet">
     <title>Manage Hot Deals</title>
 </head>
 <body class="bg-gray-50 p-6">
