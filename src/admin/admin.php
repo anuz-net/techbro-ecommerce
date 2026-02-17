@@ -6,6 +6,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 require_once '../config.php';
+require_once '../currency.php';
 
 // Get real statistics
 $users_count = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
@@ -95,7 +96,7 @@ $revenue = $pdo->query("SELECT SUM(total) FROM orders WHERE status != 'cancelled
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-600 mb-1">Total Revenue</p>
-                        <p class="text-3xl font-bold text-gray-900">$<?php echo number_format($revenue, 2); ?></p>
+                        <p class="text-3xl font-bold text-gray-900"><?php echo formatPrice($revenue); ?></p>
                     </div>
                     <div class="p-3 bg-red-100 rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-600">

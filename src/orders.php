@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'config.php';
+require_once 'currency.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -126,7 +127,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <p class="text-sm text-gray-600">Quantity: <?php echo $item['quantity']; ?></p>
                                                 </div>
                                                 <div class="text-right">
-                                                    <p class="font-semibold text-red-600">$<?php echo number_format($item['price'], 2); ?></p>
+                                                    <p class="font-semibold text-red-600"><?php echo formatPrice($item['price']); ?></p>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
@@ -134,7 +135,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     
                                     <div class="border-t pt-4 flex justify-between items-center">
                                         <span class="font-semibold">Total:</span>
-                                        <span class="text-xl font-bold text-red-600">$<?php echo number_format($order['total'], 2); ?></span>
+                                        <span class="text-xl font-bold text-red-600"><?php echo formatPrice($order['total']); ?></span>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

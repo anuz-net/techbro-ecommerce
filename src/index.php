@@ -414,7 +414,7 @@ require_once 'config.php';
                             </a>
 
                             <div class="flex items-center mb-2">
-                                <span class="text-2xl font-bold text-orange-600">$<?php echo number_format($product['price'], 2); ?></span>
+                                <span class="text-2xl font-bold text-orange-600"><?php echo formatPrice($product['price']); ?></span>
                             </div>
 
                             <div class="flex items-center mb-4">
@@ -490,7 +490,7 @@ require_once 'config.php';
                             </a>
 
                             <div class="flex items-center mb-2">
-                                <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
+                                <span class="text-2xl font-bold text-red-600"><?php echo formatPrice($product['price']); ?></span>
                             </div>
 
                             <div class="flex items-center mb-4">

@@ -127,7 +127,7 @@ if (!isset($products)) {
                                 <span class="ml-2 text-sm text-gray-600">(<?php echo $product['rating']; ?>)</span>
                             </div>
                             <div class="flex items-center justify-between">
-                                <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
+                                <span class="text-2xl font-bold text-red-600"><?php echo formatPrice($product['price']); ?></span>
                             </div>
                             <button onclick="addToCart(<?php echo $product['id']; ?>)" class="mt-3 w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300">
                                 Add to Cart

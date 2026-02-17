@@ -50,7 +50,7 @@ if ($query) {
                             <h3 class="font-semibold text-lg mb-2"><?php echo htmlspecialchars($product['name']); ?></h3>
                         </a>
                         <div class="flex items-center mb-2">
-                            <span class="text-2xl font-bold text-red-600">$<?php echo number_format($product['price'], 2); ?></span>
+                            <span class="text-2xl font-bold text-red-600"><?php echo formatPrice($product['price']); ?></span>
                         </div>
                         <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400">
