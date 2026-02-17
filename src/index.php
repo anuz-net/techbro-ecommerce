@@ -623,7 +623,7 @@ require_once 'config.php';
             }
 
             function updateCartCount() {
-                fetch('get_cart_count.php')
+                fetch('api/get_cart_count.php')
                     .then(response => response.json())
                     .then(data => {
                         document.querySelector('.cart-count').textContent = data.count;
@@ -665,7 +665,7 @@ require_once 'config.php';
             }
 
             function loadCartItems() {
-                fetch('get_cart_items.php')
+                fetch('api/get_cart_items.php')
                     .then(response => response.json())
                     .then(data => {
                         const container = document.getElementById('cartItems');
@@ -694,7 +694,7 @@ require_once 'config.php';
 
             function updateQuantity(cartId, quantity) {
                 if (quantity < 1) return;
-                fetch('update_cart.php', {
+                fetch('api/update_cart.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
@@ -711,7 +711,7 @@ require_once 'config.php';
             }
 
             function removeFromCart(cartId) {
-                fetch('remove_from_cart.php', {
+                fetch('api/remove_from_cart.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'

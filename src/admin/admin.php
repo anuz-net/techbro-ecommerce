@@ -158,6 +158,9 @@ $revenue = $pdo->query("SELECT SUM(total) FROM orders WHERE status != 'cancelled
                     <a href="../system_check.php" class="block px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition text-sm font-medium">
                         🔍 System Check
                     </a>
+                    <a href="export_data.php" class="block px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition text-sm font-medium">
+                        📊 Export All Data
+                    </a>
                 </div>
             </div>
         </div>
