@@ -103,8 +103,8 @@ $brand = explode(' ', $product['name'])[0];
                 </div>
 
                 <div class="mb-6">
-                    <div class="text-4xl font-bold text-gray-900 mb-2">$<?php echo number_format($product['price'], 2); ?></div>
-                    <div class="text-sm text-gray-600">or $<?php echo number_format($product['price'] / 12, 2); ?>/month for 12 months</div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2"><?php echo formatPrice($product['price']); ?></div>
+                    <div class="text-sm text-gray-600">or <?php echo formatPrice($product['price'] / 12); ?>/month for 12 months</div>
                 </div>
 
                 <button onclick="addToCart(<?php echo $product['id']; ?>)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-xl text-lg mb-4 transition">
