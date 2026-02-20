@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'config.php';
+require_once 'currency.php';
 
 $category_slug = $_GET['slug'] ?? '';
 $special_filter = $_GET['filter'] ?? '';

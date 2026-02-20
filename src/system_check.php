@@ -80,10 +80,14 @@
         // Check required files
         echo '<div class="section"><h2>📁 Required Files</h2><table><tr><th>File</th><th>Status</th><th>Size</th></tr>';
         $required_files = [
-            'config.php', 'currency.php', 'auth.php', 'add_to_cart.php', 
-            'checkout.php', 'esewa_payment.php', 'esewa_success.php', 'esewa_failure.php',
+            'config.php', 'currency.php', 'auth.php', 'checkout.php', 
+            'esewa_payment.php', 'esewa_success.php', 'esewa_failure.php',
             'order_success.php', 'cart.php', 'index.php', 'product.php', 'category.php',
-            'login.php', 'signup.php', 'profile.php', 'orders.php', 'admin.php'
+            'login.php', 'signup.php', 'profile.php', 'orders.php',
+            'api/add_to_cart.php', 'api/get_cart_count.php', 'api/get_cart_items.php',
+            'api/update_cart.php', 'api/remove_from_cart.php', 'api/submit_review.php',
+            'admin/admin.php', 'admin/admin_login.php', 'admin/add_product.php',
+            'admin/manage_all_products.php', 'admin/export_data.php'
         ];
         
         foreach ($required_files as $file) {
